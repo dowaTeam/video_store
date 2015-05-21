@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Registro de Trabajadores</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid>
+                <h:outputLabel value="Nombre: " for="nombre"/>
+                <h:inputText id="nombre" label="Nombre" required="true" value="#{WorkerBean.name}"/>
+                <h:message for="nombre"/>
+                
+                <h:outputLabel value="Apellido Paterno:" for="apaterno"/>
+                <h:inputText id="apaterno" label="Apellido Paterno" required="true" value="#{WorkerBean.f_lastname}"/>
+                <h:message for="apaterno"/>
+                
+                <h:outputLabel value="Apellido Materno:" for="amaterno"/>
+                <h:inputText id="amaterno" label="Apellido Materno" required="true" value="#{WorkerBean.s_lastname}"/>
+                <h:message for="amaterno"/>
+                
+                <h:outputLabel value="Admistrador: " for="esAdmin"/>
+                <h:selectOneMenu id="esAdmin" label="Administrador" value="#{Worker.is_admin}">
+                    <f:selectItem itemLabel="Si" value="1"/>
+                    <f:selectItem itemLabel="No" value="0"/>
+                </h:selectOneMenu>
+                <h:message for="esAdmin"/>
+                
+                <h:outputLabel value="Direccion: " for="direccion"/>
+                <h:inputText id="direccion" label="Direccion" required="true" value="#{WorkerBean.address}"/>
+                <h:message for="direccion"/>
+                
+                <h:outputLabel value="Telefono :" for="telefono"/>
+                <h:inputText id="telefono" label="Telefono" required="true" value="#{WorkerBean.phone}"/>
+                <h:message for="telefono"/>
+                
+                <h:outputLabel value="Correo Electronico: " for="email"/>
+                <h:inputText id="email" label="Correo Electronico" required="true" value="#{WorkerBean.email}"/>
+                <h:message for="email"/>
+                
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
