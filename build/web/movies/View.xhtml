@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMoviesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMoviesLabel_id}"/>
+                    <h:outputText value="#{moviesController.selected.id}" title="#{bundle.ViewMoviesTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewMoviesLabel_name}"/>
+                    <h:outputText value="#{moviesController.selected.name}" title="#{bundle.ViewMoviesTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewMoviesLabel_genre}"/>
+                    <h:outputText value="#{moviesController.selected.genre}" title="#{bundle.ViewMoviesTitle_genre}"/>
+                    <h:outputText value="#{bundle.ViewMoviesLabel_synopsis}"/>
+                    <h:outputText value="#{moviesController.selected.synopsis}" title="#{bundle.ViewMoviesTitle_synopsis}"/>
+                    <h:outputText value="#{bundle.ViewMoviesLabel_length}"/>
+                    <h:outputText value="#{moviesController.selected.length}" title="#{bundle.ViewMoviesTitle_length}"/>
+                    <h:outputText value="#{bundle.ViewMoviesLabel_dispDvd}"/>
+                    <h:outputText value="#{moviesController.selected.dispDvd}" title="#{bundle.ViewMoviesTitle_dispDvd}"/>
+                    <h:outputText value="#{bundle.ViewMoviesLabel_dispBray}"/>
+                    <h:outputText value="#{moviesController.selected.dispBray}" title="#{bundle.ViewMoviesTitle_dispBray}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{moviesController.destroyAndView}" value="#{bundle.ViewMoviesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMoviesEditLink}"/>
+                <br />
+                <h:commandLink action="#{moviesController.prepareCreate}" value="#{bundle.ViewMoviesCreateLink}" />
+                <br />
+                <h:commandLink action="#{moviesController.prepareList}" value="#{bundle.ViewMoviesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMoviesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRentalsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRentalsLabel_id}"/>
+                    <h:outputText value="#{rentalsController.selected.id}" title="#{bundle.ViewRentalsTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewRentalsLabel_idClient}"/>
+                    <h:outputText value="#{rentalsController.selected.idClient}" title="#{bundle.ViewRentalsTitle_idClient}"/>
+                    <h:outputText value="#{bundle.ViewRentalsLabel_idWorker}"/>
+                    <h:outputText value="#{rentalsController.selected.idWorker}" title="#{bundle.ViewRentalsTitle_idWorker}"/>
+                    <h:outputText value="#{bundle.ViewRentalsLabel_movies}"/>
+                    <h:outputText value="#{rentalsController.selected.movies}" title="#{bundle.ViewRentalsTitle_movies}"/>
+                    <h:outputText value="#{bundle.ViewRentalsLabel_amount}"/>
+                    <h:outputText value="#{rentalsController.selected.amount}" title="#{bundle.ViewRentalsTitle_amount}"/>
+                    <h:outputText value="#{bundle.ViewRentalsLabel_deliveryDate}"/>
+                    <h:outputText value="#{rentalsController.selected.deliveryDate}" title="#{bundle.ViewRentalsTitle_deliveryDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewRentalsLabel_checkoutDate}"/>
+                    <h:outputText value="#{rentalsController.selected.checkoutDate}" title="#{bundle.ViewRentalsTitle_checkoutDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rentalsController.destroyAndView}" value="#{bundle.ViewRentalsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRentalsEditLink}"/>
+                <br />
+                <h:commandLink action="#{rentalsController.prepareCreate}" value="#{bundle.ViewRentalsCreateLink}" />
+                <br />
+                <h:commandLink action="#{rentalsController.prepareList}" value="#{bundle.ViewRentalsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRentalsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
