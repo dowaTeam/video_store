@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/baseTemplate.xhtml">
+        <ui:define name="content">
+            <h:form>                                          
+                <p:panel header="Lista de Trabajadores">
+                <h:outputText escape="false" value="(No hay trabajadores registrados)" rendered="#{workersController.rowCount == 0}"/>
+                    <h:panelGroup rendered="#{workersController.rowCount > 0}">
+                        <p:dataTable value="#{workersController.items}" var="worker" >
+                            <p:column headerText="Id">
+                                <h:outputText value="#{worker.id}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{worker.name}"/>
+                            </p:column>
+                            <p:column headerText="Apellido Paterno">
+                                <h:outputText value="#{worker.FLastname}"/>
+                            </p:column>
+                            <p:column headerText="Apellido Materno">
+                                <h:outputText value="#{worker.SLastname}"/>
+                            </p:column>
+                            <p:column headerText="Administrador">
+                                <h:outputText value="#{worker.isAdmin}"/>
+                            </p:column>
+                            <p:column headerText="Direccion">
+                                <h:outputText value="#{worker.address}"/>
+                            </p:column>
+                            <p:column headerText="Telfono">
+                                <h:outputText value="#{worker.phone}"/>
+                            </p:column>
+                            <p:column headerText="Correo Electrnico">
+                                <h:outputText value="#{worker.email}"/>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton value="Editar" action="#{workersController.prepareEdit}" ajax="false" icon="ui-icon-pencil"/>
+                                <p:commandButton value="Eliminar" action="#{workersController.destroy}" ajax="false" icon="ui-icon-closethick"/>
+                            </p:column>
+                        </p:dataTable>
+
+                    </h:panelGroup>
+                    <br/>
+                    <p:commandButton value="Nuevo Trabajador" action="#{workersController.prepareCreate}" ajax="false" icon="ui-icon-plusthick"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
