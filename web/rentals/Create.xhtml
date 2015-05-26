@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRentalsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRentalsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{rentalsController.selected.id}" title="#{bundle.CreateRentalsTitle_id}" required="true" requiredMessage="#{bundle.CreateRentalsRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateRentalsLabel_idClient}" for="idClient" />
+                    <h:inputText id="idClient" value="#{rentalsController.selected.idClient}" title="#{bundle.CreateRentalsTitle_idClient}" required="true" requiredMessage="#{bundle.CreateRentalsRequiredMessage_idClient}"/>
+                    <h:outputLabel value="#{bundle.CreateRentalsLabel_idWorker}" for="idWorker" />
+                    <h:inputText id="idWorker" value="#{rentalsController.selected.idWorker}" title="#{bundle.CreateRentalsTitle_idWorker}" required="true" requiredMessage="#{bundle.CreateRentalsRequiredMessage_idWorker}"/>
+                    <h:outputLabel value="#{bundle.CreateRentalsLabel_movies}" for="movies" />
+                    <h:inputText id="movies" value="#{rentalsController.selected.movies}" title="#{bundle.CreateRentalsTitle_movies}" required="true" requiredMessage="#{bundle.CreateRentalsRequiredMessage_movies}"/>
+                    <h:outputLabel value="#{bundle.CreateRentalsLabel_amount}" for="amount" />
+                    <h:inputText id="amount" value="#{rentalsController.selected.amount}" title="#{bundle.CreateRentalsTitle_amount}" required="true" requiredMessage="#{bundle.CreateRentalsRequiredMessage_amount}"/>
+                    <h:outputLabel value="#{bundle.CreateRentalsLabel_deliveryDate}" for="deliveryDate" />
+                    <h:inputText id="deliveryDate" value="#{rentalsController.selected.deliveryDate}" title="#{bundle.CreateRentalsTitle_deliveryDate}" required="true" requiredMessage="#{bundle.CreateRentalsRequiredMessage_deliveryDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateRentalsLabel_checkoutDate}" for="checkoutDate" />
+                    <h:inputText id="checkoutDate" value="#{rentalsController.selected.checkoutDate}" title="#{bundle.CreateRentalsTitle_checkoutDate}" required="true" requiredMessage="#{bundle.CreateRentalsRequiredMessage_checkoutDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{rentalsController.create}" value="#{bundle.CreateRentalsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{rentalsController.prepareList}" value="#{bundle.CreateRentalsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRentalsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

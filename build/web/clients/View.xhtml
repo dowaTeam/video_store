@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewClientsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewClientsLabel_id}"/>
+                    <h:outputText value="#{clientsController.selected.id}" title="#{bundle.ViewClientsTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_name}"/>
+                    <h:outputText value="#{clientsController.selected.name}" title="#{bundle.ViewClientsTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_FLastName}"/>
+                    <h:outputText value="#{clientsController.selected.FLastName}" title="#{bundle.ViewClientsTitle_FLastName}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_SLastName}"/>
+                    <h:outputText value="#{clientsController.selected.SLastName}" title="#{bundle.ViewClientsTitle_SLastName}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_registrationDate}"/>
+                    <h:outputText value="#{clientsController.selected.registrationDate}" title="#{bundle.ViewClientsTitle_registrationDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewClientsLabel_active}"/>
+                    <h:outputText value="#{clientsController.selected.active}" title="#{bundle.ViewClientsTitle_active}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_debts}"/>
+                    <h:outputText value="#{clientsController.selected.debts}" title="#{bundle.ViewClientsTitle_debts}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_address}"/>
+                    <h:outputText value="#{clientsController.selected.address}" title="#{bundle.ViewClientsTitle_address}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_phone}"/>
+                    <h:outputText value="#{clientsController.selected.phone}" title="#{bundle.ViewClientsTitle_phone}"/>
+                    <h:outputText value="#{bundle.ViewClientsLabel_email}"/>
+                    <h:outputText value="#{clientsController.selected.email}" title="#{bundle.ViewClientsTitle_email}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{clientsController.destroyAndView}" value="#{bundle.ViewClientsDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewClientsEditLink}"/>
+                <br />
+                <h:commandLink action="#{clientsController.prepareCreate}" value="#{bundle.ViewClientsCreateLink}" />
+                <br />
+                <h:commandLink action="#{clientsController.prepareList}" value="#{bundle.ViewClientsShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewClientsIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
