@@ -24,6 +24,7 @@ public class WorkersController {
 
     public String prepareCreate(){
         recreateModel();
+        recreateCurrent();
         return "Create.faces";
     }
 

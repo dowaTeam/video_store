@@ -27,6 +27,7 @@ public class ClientsController {
 
     public String prepareCreate(){
         recreateModel();
+        recreateCurrent();
         return "Create.faces";
     }
 

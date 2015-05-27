@@ -16,6 +16,9 @@ public class Client {
     private String address;
     private String phone;
     private String email;
+    public Client(){
+        active = true;
+    }
 
     public int getId() {
         return id;

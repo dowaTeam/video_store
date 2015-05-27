@@ -23,8 +23,12 @@
                     <p:message for="genre"/>
 
                     <p:outputLabel value="#{bundle.CreateMoviesLabel_synopsis}" for="synopsis" />
-                    <p:inputTextarea rows="4" cols="30" id="synopsis" value="#{moviesController.selected.synopsis}" title="#{bundle.CreateMoviesTitle_synopsis}" required="true" requiredMessage="#{bundle.CreateMoviesRequiredMessage_synopsis}"/>
+                    <p:inputTextarea rows="10" cols="20" id="synopsis" value="#{moviesController.selected.synopsis}"
+                                     title="#{bundle.CreateMoviesTitle_synopsis}" required="true"
+                                     requiredMessage="#{bundle.CreateMoviesRequiredMessage_synopsis}"
+                            autoResize="false" />
                     <p:message for="synopsis"/>
+
 
                     <p:outputLabel value="#{bundle.CreateMoviesLabel_length}" for="length" />
                     <p:inputText id="length" value="#{moviesController.selected.length}" title="#{bundle.CreateMoviesTitle_length}" required="true" requiredMessage="#{bundle.CreateMoviesRequiredMessage_length}"/>
@@ -32,7 +36,8 @@
 
                     <p:outputLabel value="#{bundle.CreateClientsLabel_registrationDate}" for="registrationDate"/>
                     <h:panelGrid columns="2">
-                        <p:calendar id="registrationDate" value="#{moviesController.selected.registrationDate}"/>
+                        <p:calendar id="registrationDate" value="#{moviesController.selected.registrationDate}" required="true"
+                                requiredMessage="Campo de Fecha de Registo se encuentra vacío"/>
                     </h:panelGrid>
                     <p:message for="registrationDate"/>
 

@@ -33,26 +33,41 @@
                     <p:message for="address" />
 
                     <h:outputLabel value="#{bundle.EditWorkersLabel_phone}" for="phone" />
-                    <p:inputText id="phone" value="#{workersController.selected.phone}" title="#{bundle.EditWorkersTitle_phone}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_phone}"/>
+                    <p:inputMask id="phone" value="#{workersController.selected.phone}"
+                                 title="#{bundle.EditWorkersTitle_phone}" required="true"
+                                 requiredMessage="#{bundle.EditWorkersRequiredMessage_phone}"
+                                 mask="(999) 999-9999"/>
                     <p:message for="phone" />
 
                     <h:outputLabel value="#{bundle.EditWorkersLabel_email}" for="email" />
-                    <p:inputText id="email" value="#{workersController.selected.email}" title="#{bundle.EditWorkersTitle_email}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_email}"/>
+                    <p:inputText id="email" value="#{workersController.selected.email}" title="#{bundle.EditWorkersTitle_email}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_email}">
+                        <f:validator validatorId="emailValidator"/>
+                    </p:inputText>
                     <p:message for="email" />
 
                     <h:outputLabel value="#{bundle.EditWorkersLabel_password}" for="password" />
-                    <p:inputText id="password" value="#{workersController.selected.password}" title="#{bundle.EditWorkersTitle_password}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_password}"/>
+                    <p:password id="password" value="#{workersController.selected.password}"
+                                title="#{bundle.EditWorkersTitle_password}" required="true"
+                                requiredMessage="#{bundle.EditWorkersRequiredMessage_password}"
+                                promptLabel="#{bundle.CreateWorkersPasswordLabel_prompt}"
+                                weakLabel="#{bundle.CreateWorkersPasswordLabel_weak}"
+                                goodLabel="#{bundle.CreateWorkersPasswordLabel_good}"
+                                strongLabel="#{bundle.CreateWorkersPasswordLabel_strong}"
+                                feedback="true"
+                                match="rpassword"
+                                validatorMessage="#{bundle.EditWorkersValidatorMessage_password}"/>
                     <p:message for="password" />
 
                     <h:outputLabel value="#{bundle.EditWorkersLabel_repeatPassword}" for="password" />
-                    <p:inputText id="rpassword"  title="#{bundle.EditWorkersTitle_repeatPassword}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_repeatPassword}"/>
+                    <p:password id="rpassword"  title="#{bundle.EditWorkersTitle_repeatPassword}" required="true"
+                         requiredMessage="#{bundle.EditWorkersRequiredMessage_repeatPassword}"/>
                     <p:message for="rpassword" />
                 </h:panelGrid>
                     <p:commandButton value="#{bundle.EditWorkersSaveLink}" action="#{workersController.edit}" ajax="false" />
                 </p:panel>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditWorkersViewLink}"/>
+
 
 
             </h:form>

@@ -12,11 +12,11 @@ import org.primefaces.model.UploadedFile;
 /**
  * Created by Andres on 27/05/2015.
  */
-public class FileUploader {
+public class FileManager {
     private static final int BUFFER_SIZE = 6124;
     private static final String folderToUpload = "//resources//images//movies//";
 
-    private FileUploader(){
+    private FileManager(){
     }
 
     public static void handleFileUpload(UploadedFile uploadedFile){
@@ -43,4 +43,15 @@ public class FileUploader {
         }
     }
 
+    public static void deleteFile(String fileName){
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        try{
+            File file = new File(externalContext.getRealPath(folderToUpload + fileName));
+            if (file.exists()){
+                file.delete();
+            }
+        }catch(Exception e){
+            System.err.println("Exception: " + e.getMessage());
+        }
+    }
 }

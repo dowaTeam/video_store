@@ -1,6 +1,6 @@
 package com.dowa.videostore.controllers;
 
-import com.dowa.videostore.Util.FileUploader;
+import com.dowa.videostore.Util.FileManager;
 import com.dowa.videostore.model.Movie;
 import com.dowa.videostore.persistence.MovieService;
 
@@ -29,6 +29,7 @@ public class MoviesController {
 
     public String prepareCreate(){
         recreateModel();
+        recreateCurrent();
         return "Create.faces";
     }
 
@@ -48,7 +49,7 @@ public class MoviesController {
     public String create(){
         try {
             movieService.persistMovie(current);
-            FileUploader.handleFileUpload(current.getFile());
+            FileManager.handleFileUpload(current.getFile());
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito","Se ha agregado satisfactoriamente"));
             recreateCurrent();
@@ -63,6 +64,12 @@ public class MoviesController {
 
     public String edit(){
         try {
+            if(current.getFile() != null){
+                System.out.println("Archivo agregado");
+                FileManager.deleteFile(current.getImagePath());
+                FileManager.handleFileUpload(current.getFile());
+                current.setImagePath(current.getFile().getFileName());
+            }
             movieService.updateMovie(current);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito","Se han guardado los cambios"));

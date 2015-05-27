@@ -9,7 +9,6 @@ and open the template in the editor.
 */
 
 #header{
-    
     padding: 10px 0 10px 10px;
 }
 #menu{
@@ -19,5 +18,9 @@ and open the template in the editor.
 #content{
     float: left;
     width: 80%;
-    padding: 10px 0 0 30px;
+    padding: 10px 0 300px 30px;
+}
+
+#workersTable{
+    font-size: 8px
 }

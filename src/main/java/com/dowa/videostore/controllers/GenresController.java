@@ -19,6 +19,7 @@ public class GenresController {
 
     public String prepareList(){
         recreateModel();
+        recreateCurrent();
         return "List.faces";
     }
 

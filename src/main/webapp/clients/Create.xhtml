@@ -35,7 +35,12 @@
 
                     <p:outputLabel value="#{bundle.CreateClientsLabel_registrationDate}" for="registrationDate"/>
                     <h:panelGrid columns="2">
-                        <p:calendar id="registrationDate" value="#{clientsController.selected.registrationDate}"/>
+                        <p:calendar id="registrationDate" value="#{clientsController.selected.registrationDate}"
+                                pattern="dd-MM-yyyy"
+                                mask="true"
+                                validatorMessage="#{bundle.CreateClientsValidatorMessage_registrationDate}"
+                                requiredMessage="#{bundle.CreateClientsRequiredMessage_registrationDate}"
+                                required="true"/>
                     </h:panelGrid>
                     <p:message for="registrationDate"/>
 
@@ -45,19 +50,22 @@
 
                     <p:outputLabel value="#{bundle.CreateClientsLabel_debts}" for="debts"/>
                     <p:inputText id="debts" value="#{clientsController.selected.debts}"
-                                 title="#{bundle.CreateClientsTitle_debts}"/>
+                                 title="#{bundle.CreateClientsTitle_debts}">
+                    </p:inputText>
                     <p:message for="debts"/>
 
                     <p:outputLabel value="#{bundle.CreateClientsLabel_address}" for="address"/>
                     <p:inputText id="address" value="#{clientsController.selected.address}"
                                  title="#{bundle.CreateClientsTitle_address}" required="true"
-                                 requiredMessage="#{bundle.CreateClientsRequiredMessage_address}"/>
+                                 requiredMessage="#{bundle.CreateClientsRequiredMessage_address}"
+                                />
                     <p:message for="address"/>
 
                     <p:outputLabel value="#{bundle.CreateClientsLabel_phone}" for="phone"/>
-                    <p:inputText id="phone" value="#{clientsController.selected.phone}"
+                    <p:inputMask id="phone" value="#{clientsController.selected.phone}"
                                  title="#{bundle.CreateClientsTitle_phone}" required="true"
-                                 requiredMessage="#{bundle.CreateClientsRequiredMessage_phone}"/>
+                                 requiredMessage="#{bundle.CreateClientsRequiredMessage_phone}"
+                                 mask="(999) 999-9999"/>
                     <p:message for="phone"/>
 
                     <p:outputLabel value="#{bundle.CreateClientsLabel_email}" for="email"/>

@@ -46,7 +46,9 @@
                     <p:message for="phone" />
 
                     <p:outputLabel value="#{bundle.EditClientsLabel_email}" for="email" />
-                    <p:inputText id="email" value="#{clientsController.selected.email}" title="#{bundle.EditClientsTitle_email}" />
+                    <p:inputText id="email" value="#{clientsController.selected.email}" title="#{bundle.EditClientsTitle_email}">
+                        <f:validator validatorId="emailValidator"/>
+                    </p:inputText>
                     <p:message for="email" />
                 </h:panelGrid>
                 <p:commandButton action="#{clientsController.edit}" value="#{bundle.EditClientsSaveLink}" ajax="false"/>
