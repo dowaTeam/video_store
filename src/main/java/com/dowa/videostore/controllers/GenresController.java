@@ -1,25 +1,30 @@
 package com.dowa.videostore.controllers;
 
-import com.dowa.videostore.model.Worker;
-import com.dowa.videostore.persistence.WorkerService;
+import com.dowa.videostore.model.Genre;
+import com.dowa.videostore.persistence.GenreService;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.sql.SQLException;
 import java.util.List;
 
-public class WorkersController {
-    private WorkerService workerService;
-    private List<Worker> items;
-    private Worker current;
-    public WorkersController() {
-        workerService = new WorkerService();
-        System.out.println("#######created WorkerController");
+public class GenresController {
+    private GenreService genreService;
+    private List<Genre> items;
+    private Genre current;
+    public GenresController() {
+        genreService = new GenreService();
+        System.out.println("#######created GenreController");
     }
 
     public String prepareList(){
         recreateModel();
         return "List.faces";
+    }
+
+    public String prepareGenres(){
+        recreateModel();
+        return "/genres/List.faces";
     }
 
     public String prepareCreate(){
@@ -30,7 +35,7 @@ public class WorkersController {
     public String prepareEdit(){
         int id =new Integer (FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
         try {
-            current = workerService.find(id);
+            current = genreService.find(id);
         } catch (SQLException e) {
             System.err.println("SQLException: " + e.getMessage());
             FacesContext context = FacesContext.getCurrentInstance();
@@ -42,7 +47,7 @@ public class WorkersController {
 
     public String create(){
         try {
-            workerService.persistWorker(current);
+            genreService.persistGenre(current);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito","Se ha agregado satisfactoriamente"));
             recreateCurrent();
@@ -57,7 +62,7 @@ public class WorkersController {
 
     public String edit(){
         try {
-            workerService.updateWorker(current);
+            genreService.updateGenre(current);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito","Se han guardado los cambios"));
             recreateCurrent();
@@ -73,7 +78,7 @@ public class WorkersController {
     public String destroy(){
         try {
             int id =new Integer (FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
-            workerService.deleteWorker(id);
+            genreService.deleteGenre(id);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito","Se ha eliminado correctamente"));
             recreateCurrent();
@@ -90,7 +95,7 @@ public class WorkersController {
     public int getRowCount(){
         int totalRows = 0;
         try {
-            totalRows =  workerService.count();
+            totalRows =  genreService.count();
         } catch (SQLException e) {
             System.err.println("SQLException: " + e.getMessage());
             totalRows = -1;
@@ -98,10 +103,10 @@ public class WorkersController {
         return totalRows;
     }
 
-    public List<Worker> getItems(){
+    public List<Genre> getItems(){
         if(items == null){
             try {
-                items = workerService.findAll();
+                items = genreService.findAll();
             } catch (SQLException e) {
                 System.err.println("SQLException: " + e.getMessage());
             }
@@ -109,9 +114,9 @@ public class WorkersController {
         return items;
     }
 
-    public Worker getSelected() {
+    public Genre getSelected() {
         if (current == null) {
-            current = new Worker();
+            current = new Genre();
         }
         return current;
     }

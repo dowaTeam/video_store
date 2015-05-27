@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/baseTemplate.xhtml">
+        <ui:define name="content">
+            <h:form >
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <p:panel header="Lista de Generos">
+                <h:outputText escape="false" value="(No hay se encontraron registros)" rendered="#{genresController.rowCount == 0}"/>
+                <h:panelGroup rendered="#{genresController.rowCount > 0}">
+                    <p:dataTable value="#{genresController.items}" var="genre" rows="5"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15" >
+                        <p:column headerText="#{bundle.ListClientsTitle_id}">
+                            <h:outputText value="#{genre.id}"/>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_name}">
+                            <h:outputText value="#{genre.name}"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Editar" action="#{genresController.prepareEdit}" ajax="false" icon="ui-icon-pencil">
+                                <f:param name="id" value="#{genre.id}"/>
+                            </p:commandButton>
+                            <p:commandButton value="Eliminar" action="#{genresController.destroy}" ajax="false" icon="ui-icon-closethick">
+                                <f:param name="id" value="#{genre.id}"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />
+                <p:commandButton value="Nuevo Genero" action="#{genresController.prepareCreate}" ajax="false" icon="ui-icon-plusthick"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

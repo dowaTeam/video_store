@@ -10,6 +10,37 @@
         <managed-bean-class>com.dowa.videostore.controllers.WorkersController</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>clientsController</managed-bean-name>
+        <managed-bean-class>com.dowa.videostore.controllers.ClientsController</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>moviesController</managed-bean-name>
+        <managed-bean-class>com.dowa.videostore.controllers.MoviesController</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>genresController</managed-bean-name>
+        <managed-bean-class>com.dowa.videostore.controllers.GenresController</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>galleryController</managed-bean-name>
+        <managed-bean-class>com.dowa.videostore.controllers.GalleryController</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>imageGridController</managed-bean-name>
+        <managed-bean-class>com.dowa.videostore.controllers.ImageGridController</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+
     <validator>
         <validator-id>emailValidator</validator-id>
         <validator-class>com.dowa.videostore.validators.EmailValidator</validator-class>

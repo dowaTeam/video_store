@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/baseTemplate.xhtml">
+    <ui:define name="title">
+        <h:outputText value="#{bundle.CreateClientsTitle}"></h:outputText>
+    </ui:define>
+    <ui:define name="content">
+        <h:form>
+            <p:panel header="Agregar Cliente">
+                <h:panelGrid columns="3">
+                    <p:outputLabel value="#{bundle.CreateClientsLabel_name}" for="name"/>
+                    <p:inputText id="name" value="#{clientsController.selected.name}"
+                                 title="#{bundle.CreateClientsTitle_name}" required="true"
+                                 requiredMessage="#{bundle.CreateClientsRequiredMessage_name}"/>
+                    <p:message for="name"/>
+
+                    <p:outputLabel value="#{bundle.CreateClientsLabel_FLastName}" for="FLastname"/>
+                    <p:inputText id="FLastname" value="#{clientsController.selected.FLastname}"
+                                 title="#{bundle.CreateClientsTitle_FLastName}" required="true"
+                                 requiredMessage="#{bundle.CreateClientsRequiredMessage_FLastName}"/>
+                    <p:message for="FLastname"/>
+
+                    <p:outputLabel value="#{bundle.CreateClientsLabel_SLastName}" for="SLastname"/>
+                    <p:inputText id="SLastname" value="#{clientsController.selected.SLastname}"
+                                 title="#{bundle.CreateClientsTitle_SLastName}" required="true"
+                                 requiredMessage="#{bundle.CreateClientsRequiredMessage_SLastName}"/>
+                    <p:message for="SLastname"/>
+
+
+                    <p:outputLabel value="#{bundle.CreateClientsLabel_registrationDate}" for="registrationDate"/>
+                    <h:panelGrid columns="2">
+                        <p:calendar id="registrationDate" value="#{clientsController.selected.registrationDate}"/>
+                    </h:panelGrid>
+                    <p:message for="registrationDate"/>
+
+                    <p:outputLabel value="#{bundle.CreateClientsLabel_active}" for="active"/>
+                    <p:selectBooleanCheckbox id="active" value="#{clientsController.selected.active}"/>
+                    <p:message for="active"/>
+
+                    <p:outputLabel value="#{bundle.CreateClientsLabel_debts}" for="debts"/>
+                    <p:inputText id="debts" value="#{clientsController.selected.debts}"
+                                 title="#{bundle.CreateClientsTitle_debts}"/>
+                    <p:message for="debts"/>
+
+                    <p:outputLabel value="#{bundle.CreateClientsLabel_address}" for="address"/>
+                    <p:inputText id="address" value="#{clientsController.selected.address}"
+                                 title="#{bundle.CreateClientsTitle_address}" required="true"
+                                 requiredMessage="#{bundle.CreateClientsRequiredMessage_address}"/>
+                    <p:message for="address"/>
+
+                    <p:outputLabel value="#{bundle.CreateClientsLabel_phone}" for="phone"/>
+                    <p:inputText id="phone" value="#{clientsController.selected.phone}"
+                                 title="#{bundle.CreateClientsTitle_phone}" required="true"
+                                 requiredMessage="#{bundle.CreateClientsRequiredMessage_phone}"/>
+                    <p:message for="phone"/>
+
+                    <p:outputLabel value="#{bundle.CreateClientsLabel_email}" for="email"/>
+                    <p:inputText id="email" value="#{clientsController.selected.email}"
+                                 title="#{bundle.CreateClientsTitle_email}">
+                        <f:validator validatorId="emailValidator"/>
+                    </p:inputText>
+                    <p:message for="email"/>
+                </h:panelGrid>
+                <br/>
+                <p:commandButton action="#{clientsController.create}" value="#{bundle.CreateClientsSaveLink}" ajax="false"/>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

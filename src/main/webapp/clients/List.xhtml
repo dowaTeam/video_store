@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/baseTemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListClientsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form >
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                <p:panel header="Lista de Clientes">
+                <h:outputText escape="false" value="#{bundle.ListClientsEmpty}" rendered="#{clientsController.rowCount == 0}"/>
+                <h:panelGroup rendered="#{clientsController.rowCount > 0}">
+                    <p:dataTable value="#{clientsController.items}" var="client" rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15" >
+                        <p:column headerText="#{bundle.ListClientsTitle_id}">
+                            <h:outputText value="#{client.id}"/>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_name}">
+                            <h:outputText value="#{client.name}"/>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_FLastName}">
+                            <h:outputText value="#{client.FLastname}"/>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_SLastName}">
+                            <h:outputText value="#{client.SLastname}"/>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_registrationDate}">
+                            <h:outputText value="#{client.registrationDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_active}">
+                            <h:outputText value="#{client.active}"/>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_debts}">
+                            <h:outputText value="#{client.debts}"/>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_address}">
+                            <h:outputText value="#{client.address}"/>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_phone}">
+                            <h:outputText value="#{client.phone}"/>
+                        </p:column>
+                        <p:column headerText="#{bundle.ListClientsTitle_email}">
+                            <h:outputText value="#{client.email}"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton value="Editar" action="#{clientsController.prepareEdit}" ajax="false" icon="ui-icon-pencil">
+                                <f:param name="id" value="#{client.id}"/>
+                            </p:commandButton>
+                            <p:commandButton value="Eliminar" action="#{clientsController.destroy}" ajax="false" icon="ui-icon-closethick">
+                                <f:param name="id" value="#{client.id}"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup>
+                <br />
+                <p:commandButton value="Nuevo Cliente" action="#{clientsController.prepareCreate}" ajax="false" icon="ui-icon-plusthick"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

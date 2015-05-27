@@ -3,46 +3,58 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/baseTemplate.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.EditWorkersTitle}"></h:outputText>
-        </ui:define>
+       >
         <ui:define name="content">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditWorkersLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{workersController.selected.id}" title="#{bundle.EditWorkersTitle_id}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_id}"/>
+                <p:panel header="Editar Trabajador">
+                <h:panelGrid columns="3">
+
                     <h:outputLabel value="#{bundle.EditWorkersLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{workersController.selected.name}" title="#{bundle.EditWorkersTitle_name}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_name}"/>
+                    <p:inputText id="name" value="#{workersController.selected.name}" title="#{bundle.EditWorkersTitle_name}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_name}"/>
+                    <p:message for="name" />
                     <h:outputLabel value="#{bundle.EditWorkersLabel_FLastname}" for="FLastname" />
-                    <h:inputText id="FLastname" value="#{workersController.selected.FLastname}" title="#{bundle.EditWorkersTitle_FLastname}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_FLastname}"/>
+                    <p:inputText id="FLastname" value="#{workersController.selected.FLastname}" title="#{bundle.EditWorkersTitle_FLastname}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_FLastname}"/>
+                    <p:message for="FLastname" />
+
                     <h:outputLabel value="#{bundle.EditWorkersLabel_SLastname}" for="SLastname" />
-                    <h:inputText id="SLastname" value="#{workersController.selected.SLastname}" title="#{bundle.EditWorkersTitle_SLastname}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_SLastname}"/>
+                    <p:inputText id="SLastname" value="#{workersController.selected.SLastname}" title="#{bundle.EditWorkersTitle_SLastname}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_SLastname}"/>
+                    <p:message for="SLastname" />
+
                     <h:outputLabel value="#{bundle.EditWorkersLabel_isAdmin}" for="isAdmin" />
-                    <h:inputText id="isAdmin" value="#{workersController.selected.isAdmin}" title="#{bundle.EditWorkersTitle_isAdmin}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_isAdmin}"/>
+                    <p:selectBooleanCheckbox id="isAdmin" value="#{workersController.selected.isAdmin}"/>
+                    <p:message for="isAdmin" />
+
                     <h:outputLabel value="#{bundle.EditWorkersLabel_address}" for="address" />
-                    <h:inputText id="address" value="#{workersController.selected.address}" title="#{bundle.EditWorkersTitle_address}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_address}"/>
+                    <p:inputText id="address" value="#{workersController.selected.address}" title="#{bundle.EditWorkersTitle_address}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_address}"/>
+                    <p:message for="address" />
+
                     <h:outputLabel value="#{bundle.EditWorkersLabel_phone}" for="phone" />
-                    <h:inputText id="phone" value="#{workersController.selected.phone}" title="#{bundle.EditWorkersTitle_phone}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_phone}"/>
+                    <p:inputText id="phone" value="#{workersController.selected.phone}" title="#{bundle.EditWorkersTitle_phone}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_phone}"/>
+                    <p:message for="phone" />
+
                     <h:outputLabel value="#{bundle.EditWorkersLabel_email}" for="email" />
-                    <h:inputText id="email" value="#{workersController.selected.email}" title="#{bundle.EditWorkersTitle_email}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_email}"/>
+                    <p:inputText id="email" value="#{workersController.selected.email}" title="#{bundle.EditWorkersTitle_email}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_email}"/>
+                    <p:message for="email" />
+
                     <h:outputLabel value="#{bundle.EditWorkersLabel_password}" for="password" />
-                    <h:inputText id="password" value="#{workersController.selected.password}" title="#{bundle.EditWorkersTitle_password}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_password}"/>
+                    <p:inputText id="password" value="#{workersController.selected.password}" title="#{bundle.EditWorkersTitle_password}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_password}"/>
+                    <p:message for="password" />
+
+                    <h:outputLabel value="#{bundle.EditWorkersLabel_repeatPassword}" for="password" />
+                    <p:inputText id="rpassword"  title="#{bundle.EditWorkersTitle_repeatPassword}" required="true" requiredMessage="#{bundle.EditWorkersRequiredMessage_repeatPassword}"/>
+                    <p:message for="rpassword" />
                 </h:panelGrid>
-                <h:commandLink action="#{workersController.update}" value="#{bundle.EditWorkersSaveLink}"/>
+                    <p:commandButton value="#{bundle.EditWorkersSaveLink}" action="#{workersController.edit}" ajax="false" />
+                </p:panel>
                 <br />
                 <br />
                 <h:link outcome="View" value="#{bundle.EditWorkersViewLink}"/>
-                <br />
-                <h:commandLink action="#{workersController.prepareList}" value="#{bundle.EditWorkersShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditWorkersIndexLink}" />
+
+
             </h:form>
         </ui:define>
     </ui:composition>

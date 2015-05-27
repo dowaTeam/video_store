@@ -8,7 +8,8 @@
 
     <ui:composition template="/baseTemplate.xhtml">
         <ui:define name="content">
-            <h:form>                                          
+            <h:form>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                 <p:panel header="Lista de Trabajadores">
                 <h:outputText escape="false" value="(No hay trabajadores registrados)" rendered="#{workersController.rowCount == 0}"/>
                     <h:panelGroup rendered="#{workersController.rowCount > 0}">
@@ -38,8 +39,12 @@
                                 <h:outputText value="#{worker.email}"/>
                             </p:column>
                             <p:column>
-                                <p:commandButton value="Editar" action="#{workersController.prepareEdit}" ajax="false" icon="ui-icon-pencil"/>
-                                <p:commandButton value="Eliminar" action="#{workersController.destroy}" ajax="false" icon="ui-icon-closethick"/>
+                                <p:commandButton value="Editar" action="#{workersController.prepareEdit}" ajax="false" icon="ui-icon-pencil">
+                                    <f:param name="id" value="#{worker.id}"/>
+                                </p:commandButton>
+                                <p:commandButton value="Eliminar" action="#{workersController.destroy}" ajax="false" icon="ui-icon-closethick">
+                                    <f:param name="id" value="#{worker.id}"/>
+                                </p:commandButton>
                             </p:column>
                         </p:dataTable>
 
@@ -50,5 +55,4 @@
             </h:form>
         </ui:define>
     </ui:composition>
-
 </html>

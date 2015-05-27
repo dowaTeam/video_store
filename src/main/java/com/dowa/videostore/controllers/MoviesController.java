@@ -1,20 +1,25 @@
 package com.dowa.videostore.controllers;
 
-import com.dowa.videostore.model.Worker;
-import com.dowa.videostore.persistence.WorkerService;
+import com.dowa.videostore.Util.FileUploader;
+import com.dowa.videostore.model.Movie;
+import com.dowa.videostore.persistence.MovieService;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.sql.SQLException;
 import java.util.List;
 
-public class WorkersController {
-    private WorkerService workerService;
-    private List<Worker> items;
-    private Worker current;
-    public WorkersController() {
-        workerService = new WorkerService();
-        System.out.println("#######created WorkerController");
+/**
+ * Created by Andres on 27/05/2015.
+ */
+public class MoviesController {
+    private MovieService movieService;
+    private List<Movie> items;
+    private Movie current;
+    public MoviesController() {
+        movieService = new MovieService();
+        System.out.println("#######created MovieController");
+        items = null;
     }
 
     public String prepareList(){
@@ -30,7 +35,7 @@ public class WorkersController {
     public String prepareEdit(){
         int id =new Integer (FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
         try {
-            current = workerService.find(id);
+            current = movieService.find(id);
         } catch (SQLException e) {
             System.err.println("SQLException: " + e.getMessage());
             FacesContext context = FacesContext.getCurrentInstance();
@@ -42,7 +47,8 @@ public class WorkersController {
 
     public String create(){
         try {
-            workerService.persistWorker(current);
+            movieService.persistMovie(current);
+            FileUploader.handleFileUpload(current.getFile());
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito","Se ha agregado satisfactoriamente"));
             recreateCurrent();
@@ -57,7 +63,7 @@ public class WorkersController {
 
     public String edit(){
         try {
-            workerService.updateWorker(current);
+            movieService.updateMovie(current);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito","Se han guardado los cambios"));
             recreateCurrent();
@@ -73,7 +79,7 @@ public class WorkersController {
     public String destroy(){
         try {
             int id =new Integer (FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
-            workerService.deleteWorker(id);
+            movieService.deleteMovie(id);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Exito","Se ha eliminado correctamente"));
             recreateCurrent();
@@ -90,7 +96,7 @@ public class WorkersController {
     public int getRowCount(){
         int totalRows = 0;
         try {
-            totalRows =  workerService.count();
+            totalRows =  movieService.count();
         } catch (SQLException e) {
             System.err.println("SQLException: " + e.getMessage());
             totalRows = -1;
@@ -98,10 +104,10 @@ public class WorkersController {
         return totalRows;
     }
 
-    public List<Worker> getItems(){
+    public List<Movie> getItems(){
         if(items == null){
             try {
-                items = workerService.findAll();
+                items = movieService.findAll();
             } catch (SQLException e) {
                 System.err.println("SQLException: " + e.getMessage());
             }
@@ -109,9 +115,9 @@ public class WorkersController {
         return items;
     }
 
-    public Worker getSelected() {
+    public Movie getSelected() {
         if (current == null) {
-            current = new Worker();
+            current = new Movie();
         }
         return current;
     }
@@ -123,4 +129,6 @@ public class WorkersController {
     private void recreateCurrent(){
         current = null;
     }
+
+
 }
